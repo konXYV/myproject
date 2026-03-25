@@ -220,7 +220,7 @@ export default function PreviewModal({ issue, onClose }: Props) {
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img src={url} alt={`screenshot-${i + 1}`}
                             className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                            onError={() => setImgErrors((prev) => new Set([...prev, i]))}/>
+                            onError={() => setImgErrors((prev) => new Set([...Array.from(prev), i]))}/>
 
                           {/* Hover overlay */}
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">

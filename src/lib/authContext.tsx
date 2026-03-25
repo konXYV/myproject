@@ -48,7 +48,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Check static permissions object
     if (key in user.permissions) return user.permissions[key as PermKey];
     // Check dynamic menu permissions stored as extra keys in user.permissions
-    return (user.permissions as Record<string, boolean>)[key] ?? false;
+    return (user.permissions as unknown as Record<string, boolean>)[key] ?? false;
   };
 
   return (

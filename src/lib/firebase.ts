@@ -1,5 +1,5 @@
 // src/lib/firebase.ts
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
@@ -12,9 +12,15 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase (prevent re-initialization in dev)
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// ตรวจสอบว่ามี API Key หรือไม่ก่อนที่จะเริ่มรัน
+const isConfigValid = !!firebaseConfig.apiKey;
 
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+const app = (getApps().length === 0 && isConfigValid) 
+  ? initializeApp(firebaseConfig) 
+  : (getApps().length > 0 ? getApp() : null); // ถ้าไม่มี Key ให้คืนค่า null แทนที่จะสั่ง Error
+
+// Export แบบป้องกัน Error ถ้า app เป็น null
+export const db = app ? getFirestore(app) : ({} as any);
+export const auth = app ? getAuth(app) : ({} as any);
+
 export default app;

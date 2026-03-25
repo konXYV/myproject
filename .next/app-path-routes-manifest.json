@@ -1,1 +1,10 @@
-{"/_not-found/page":"/_not-found","/admin/menus/page":"/admin/menus","/admin/users/page":"/admin/users","/login/page":"/login","/page":"/","/dashboard/page":"/dashboard","/issues/page":"/issues"}
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/admin/menus/page": "/admin/menus",
+  "/admin/users/page": "/admin/users",
+  "/dashboard/page": "/dashboard",
+  "/issues/page": "/issues",
+  "/login/page": "/login",
+  "/page": "/"
+}

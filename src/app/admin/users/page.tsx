@@ -90,11 +90,13 @@ export default function UsersPage() {
   };
 
   const selectAllPerms = (all: boolean) => {
-    if (form.isAdmin) return;
-    const p = {} as Permissions;
-    ALL_PERMISSIONS.forEach(({ key }) => { (p as Record<string, boolean>)[key] = all; });
-    setForm((f) => ({ ...f, permissions: p }));
-  };
+  if (form.isAdmin) return;
+  const p: Permissions = {} as Permissions;
+  ALL_PERMISSIONS.forEach(({ key }) => { 
+    p[key as keyof Permissions] = all; 
+  });
+  setForm((f) => ({ ...f, permissions: p }));
+};
 
   // ── submit ──────────────────────────────────────────────────────────────────
 
